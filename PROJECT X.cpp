@@ -40,7 +40,7 @@ void task::settaski (string ta ){
 // les methodes :
 void task::addtask( ) {
     string nom;
-    cout << "entrez une tache a faire : ";
+    cout << "Entrez une tache a faire : ";
        cin.ignore();
     getline(cin ,nom);
     taski = nom;
@@ -51,13 +51,13 @@ void task::addtask( ) {
 void task::addstatut() {
 
     string st ;
-    cout << "entrez l'etat de la tache :" ;
+    cout << "Entrez l'etat de la tache :" ;
     cin >> st ;
 
     if (st == "complete") {
         statut=st ;
     } else {
-        cout << "retapez la commande " << endl ;
+        cout << "Retapez la commande " << endl ;
     }
 }
 void task::gettask(){
@@ -79,7 +79,7 @@ int main() {
    const int taille =100 ;
    task t[taille];
 
-   cout << "GESTION DES TACHES :::: ->>> " << endl ;
+   cout << "                                    <<<- :::: GESTION DES TACHES :::: ->>> " << endl ;
     int i=0 ;
     string choix ;
 
@@ -87,21 +87,21 @@ int main() {
 int j ,m;
 do {
 
- cout <<"entrez un de ces comandes (ajouter, supprimer, completer, quitter) " ;
+ cout <<"Entrez un de ces comandes (ajouter, supprimer, completer, quitter) " ;
 
    cin >> choix ;
 cout << endl ;
 
-   if (choix == "ajouter" ){
+   if (choix == "ajouter"  || choix == "AJOUTER" ){
        t[i].addtask() ;
           for (j = 0; j < i; j++) {
            cout << j+1 << ". ";
            t[j].gettask();
        }
    }
-    if (choix =="completer" ){
+    if (choix =="completer" || choix == "COMPLETER" ){
 
-    cout << "entrez le numero de la tache : " ;
+    cout << "Entrez le numero de la tache : " ;
     cin >> n;
     n--;
         t[n].addstatut() ;
@@ -113,10 +113,10 @@ cout << endl ;
     }
 
 
-       if (choix=="supprimer"){
+       if (choix=="supprimer" || choix == "SUPPRIMER"){
 
       int m;
-            cout << "entrez le numero de la tache : ";
+            cout << "Entrez le numero de la tache : ";
             cin >> m;
             m--;
             t[i].removtask(t, m, i);
@@ -129,7 +129,7 @@ cout << endl ;
 
 
 i++ ;
-   } while (choix != "quitter")  ;
+   } while (choix != "quitter"  || choix == "QUITTER")  ;
 
 
     return 0;
