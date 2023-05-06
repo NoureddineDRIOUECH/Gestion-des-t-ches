@@ -6,7 +6,6 @@ using namespace std;
 
 class task {
 private :
-    int num ;
 string taski ;
 string statut ;
 
