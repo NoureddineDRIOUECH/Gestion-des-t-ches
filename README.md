@@ -6,7 +6,7 @@ Ce dépôt contient notre projet "Gestion des taches" réalisé dans le cadre du
 Notre application permet aux utilisateurs de créer, organiser, suivre et partager des listes de tâches avec d'autres membres de l'équipe. Elle offre les fonctionnalités suivantes :
 
 - Ajout de tâches à faire.
-- Marquage des tâches comme complètes ou incomplètes.
+- Marquage des tâches comme complètes.
 - Suppression de tâches.
 - Affichage des tâches existantes.
 
@@ -14,7 +14,7 @@ Notre application permet aux utilisateurs de créer, organiser, suivre et partag
 
 - [Zakaria EL BIDALI](https://github.com/Zakaria12e)
 - [Noureddine DRIOUECH](https://github.com/NoureddineDRIOUECH)
-- [Anass ENNAQADI](https://github.com/ANAS-ENNAQADI)
+- [Anas En-Naqadi](https://github.com/ANAS-EN-NAQADI)
 
 
 Merci d'avoir utilisé notre application de gestion des taches !
