@@ -1,135 +1,147 @@
 #include <iostream>
+#include <vector>
+#include <string>
 
-#include<string>
+// couleurs pour les mesages de succes
+#define COLOR_GREEN "\033[1;32m"
+#define COLOR_RESET "\033[0m"
+
 using namespace std;
 
-
-class task {
-private :
-string taski ;
-string statut ;
-
-public :
-
-
-    void settaski (string ta );
-    void setstatut (string st);
-    string gettaski ();
-    string getstatut ();
-void addtask ();
-task*  removtask (task t[] ,int n,int ind);
-void addstatut ();
-void gettask () ;
-};
-// implementation
-
-void task::settaski (string ta ){
-    this->taski = ta ;
-}
-    void task::setstatut (string st){
-    this->statut= st ;
-
-    }
-    string task::gettaski (){
-    return this->taski ;
-    }
-     string task::getstatut(){
-    return this->statut;
-    }
-// les methodes :
-void task::addtask( ) {
+class Tache {
+private:
     string nom;
-    cout << "Entrez une tache a faire : ";
-       cin.ignore();
-    getline(cin ,nom);
-    taski = nom;
-    statut = "incomplete";
+    bool complete;
+
+public:
+    Tache(string nom) {
+        this->nom = nom;
+        complete = false;
+    }
+
+    void afficher(int indice) const {
+        cout << "   " << indice << ". " << nom;
+        if (complete) {
+            cout << " - Complete" << endl;
+        }
+        else {
+            cout << " - Incomplete" << endl;
+        }
+    }
+
+    void marquerComplete() {
+        complete = true;
+    }
+};
+
+// fonction pour ajouter une nuvelle tache
+void ajouterTache(vector<Tache>& listeTaches) {
+    string nom;
+
+    cout << "Nom de la tache: ";
+    getline(cin, nom);
+    cout << endl;
+
+    Tache tache(nom);
+    listeTaches.push_back(tache);
+
+    cout << COLOR_GREEN << "La tache a ete ajoutee avec succes !" << COLOR_RESET << endl;
+}
+
+// fonction pour afficher toutes les taches
+void afficherTaches(const vector<Tache>& listeTaches) {
+    cout << endl << "Liste des taches : " << endl;
+    if (listeTaches.empty()) {
+        cout << "Aucune tache n'est disponible." << endl;
+    }
+    else {
+        for (int i = 0; i < listeTaches.size(); i++) {
+            listeTaches[i].afficher(i + 1);
+        }
+    }
     cout << endl;
 }
 
-void task::addstatut() {
+// fonction pour marquer une tache comme terminee
+void marquerComplete(vector<Tache>& listeTaches) {
+    afficherTaches(listeTaches);
 
-    string st ;
-    cout << "Entrez l'etat de la tache :" ;
-    cin >> st ;
+    int indice;
+    cout << "Indice de la tache a marquer comme complete: ";
+    cin >> indice;
+    cout << endl;
 
-    if (st == "complete") {
-        statut=st ;
-    } else {
-        cout << "Retapez la commande " << endl ;
+    if (indice >= 1 && indice <= listeTaches.size()) {
+        listeTaches[indice - 1].marquerComplete();
+        cout << COLOR_GREEN << "La tache a ete marquee comme complete avec succes !" << COLOR_RESET << endl;
+    }
+    else {
+        cout << "Indice de tache invalide !" << endl;
     }
 }
-void task::gettask(){
 
+// Fonction pour supprimer une tache
+void supprimerTache(vector<Tache>& listeTaches) {
+    afficherTaches(listeTaches);
 
-    cout << this->taski << "-"<<this->statut ;
-    cout << endl ;
+    int indice;
+    cout << "Indice de la tache a supprimer: ";
+    cin >> indice;
+    cout << endl;
 
+    if (indice >= 1 && indice <= listeTaches.size()) {
+        listeTaches.erase(listeTaches.begin() + indice - 1);
+        cout << COLOR_GREEN << "La tache a ete supprimee avec succes !" << COLOR_RESET << endl;
+    }
+    else {
+        cout << "Indice de tache invalide !" << endl;
+    }
 }
-task * task::removtask (task t[] ,int n,int ind){
-    int j ;
- for (j=n;j<=ind;j++){
-    t[j]=t[j+1];
- }
 
-return t ;
-}
 int main() {
-   const int taille =100 ;
-   task t[taille];
+    cout << "******************************************" << endl;
+    cout << "           GESTION DES TACHES              " << endl;
+    cout << "******************************************" << endl << endl;
 
-   cout << "                                    <<<- :::: GESTION DES TACHES :::: ->>> " << endl ;
-    int i=0 ;
-    string choix ;
+    vector<Tache> listeTaches;
+    int choix;
 
-   int n ;
-int j ,m;
-do {
+    do {
+        cout << "Entrez l'une des commandes suivantes : " << endl;
+        cout << "1. Afficher les taches" << endl;
+        cout << "2. Ajouter une tache" << endl;
+        cout << "3. Supprimer une tache" << endl;
+        cout << "4. Marquer une tache comme complete" << endl;  \\ affichage du menu de commande 
+        cout << "5. Quitter" << endl;
+        cout << "Choix: ";
 
- cout <<"Entrez un de ces comandes (ajouter, supprimer, completer, quitter) " ;
+        cin >> choix;
+        cin.ignore();
+        cout << endl;
 
-   cin >> choix ;
-cout << endl ;
+        switch (choix) {
+            case 1:
+                afficherTaches(listeTaches);
+                break;
+            case 2:
+                ajouterTache(listeTaches);
+                break;
+            case 3:
+                supprimerTache(listeTaches);
+                break;
+            case 4:
+                marquerComplete(listeTaches);
+                break;
+            case 5:
+                cout << "Au revoir !" << endl;
+                break;
+            default:
+                cout << "Choix invalide." << endl;
+                break;
+        }
+        cout << endl;
 
-   if (choix == "ajouter"  || choix == "AJOUTER" ){
-       t[i].addtask() ;
-          for (j = 0; j < i; j++) {
-           cout << j+1 << ". ";
-           t[j].gettask();
-       }
-   }
-    if (choix =="completer" || choix == "COMPLETER" ){
-
-    cout << "Entrez le numero de la tache : " ;
-    cin >> n;
-    n--;
-        t[n].addstatut() ;
-           for (j = 0; j < i; j++) {
-           cout << j+1 << ". ";
-           t[j].gettask();
-       }
-
-    }
-
-
-       if (choix=="supprimer" || choix == "SUPPRIMER"){
-
-      int m;
-            cout << "Entrez le numero de la tache : ";
-            cin >> m;
-            m--;
-            t[i].removtask(t, m, i);
-            i--;
-   for (j = 0; j < i; j++) {
-           cout << j+1 << ". ";
-           t[j].gettask();
-       }
-       }
-
-
-i++ ;
-   } while (choix != "quitter"  || choix == "QUITTER")  ;
-
+    } while (choix != 5);
 
     return 0;
 }
