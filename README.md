@@ -10,4 +10,10 @@ Notre application permet aux utilisateurs de créer, organiser, suivre et partag
 - Suppression de tâches.
 - Affichage des tâches existantes.
 
+## Contributeurs
+
+- [Zakaria ELBIDALI](https://github.com/Zakaria12e)
+- [Noureddine DRIOUECH](https://github.com/NoureddineDRIOUECH)
+- [Anass ENNAQADI](https://github.com/ANAS-ENNAQADI)
+
 Merci d'avoir utilisé notre application de gestion des taches !
