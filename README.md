@@ -9,3 +9,5 @@ Notre application permet aux utilisateurs de créer, organiser, suivre et partag
 - Marquage des tâches comme complètes ou incomplètes.
 - Suppression de tâches.
 - Affichage des tâches existantes.
+
+Merci d'avoir utilisé notre application de gestion des taches !
